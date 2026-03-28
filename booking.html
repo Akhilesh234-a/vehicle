@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking | MARUTI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">MARUTI</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="vehicles.html">Our Fleet</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+    <div class="booking-container">
+        <!-- Vehicle Details Go Here -->
+        <div id="booking-details" class="booking-details-wrapper">
+            <!-- Injected by JS -->
+            <h2 class="accent-text">Loading...</h2>
+        </div>
+
+        <!-- Form Goes Here -->
+        <div class="booking-form-wrapper">
+            <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">Confirm <span class="accent-text">Reservation</span></h2>
+            
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="+91 XXXXXXXXXX" required>
+                </div>
+                
+                <div class="flex-row" style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div style="flex: 1;">
+                        <label>Pick-up Date</label>
+                        <input type="date" id="pickup-date" class="form-control" required>
+                    </div>
+                    <div style="flex: 1;">
+                        <label>Return Date</label>
+                        <input type="date" id="return-date" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Pick-up Location</label>
+                    <select id="location" class="form-control" required>
+                        <option value="">Select City/Location</option>
+                        <option value="delhi">New Delhi Airport</option>
+                        <option value="mumbai">Mumbai Airport</option>
+                        <option value="goa">Goa (Dabolim)</option>
+                        <option value="bangalore">Bangalore (Indiranagar)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">Confirm Booking</button>
+            </form>
+
+            <div id="booking-success">
+                <h3>Reservation Successful!</h3>
+                <p>Your booking details have been saved. Our representative will contact you shortly to confirm the handover.</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="vehicles.html" class="btn-secondary">Browse More Vehicles</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer style="margin-top: auto;">
+        <a href="index.html" class="logo">MARUTI</a>
+        <p class="footer-text">© 2026 MARUTI Vehicle Rentals India. All rights reserved.</p>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/booking.js"></script>
+</body>
+</html>

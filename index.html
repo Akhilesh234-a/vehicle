@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARUTI | Premium Vehicle Rentals India</title>
+    <meta name="description" content="Rent premium Indian cars and bikes with MARUTI Vehicle Rentals. Transparent pricing, 24/7 roadside support, and a curated fleet of the finest vehicles.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════
+           RESET & DESIGN TOKENS
+        ═══════════════════════════════════════ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-main:      #ffffff;
+            --bg-card:      #f8f9fa;
+            --bg-subtle:    #f1f3f5;
+            --text-main:    #212529;
+            --text-muted:   #6c757d;
+            --accent:       #0f4c81;
+            --accent-hover: #0a3356;
+            --border:       #dee2e6;
+            --nav-h:        78px;    /* sticky nav height — used for scroll-margin */
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        img { display: block; }
+
+        .accent { color: var(--accent); }
+
+        /* ═══════════════════════════════════════
+           STICKY NAVBAR
+        ═══════════════════════════════════════ */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 5%;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            height: var(--nav-h);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+
+        .nav-links { display: flex; gap: 0; }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 2.25rem;
+            font-size: 0.88rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            transition: color 0.25s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        /* ═══════════════════════════════════════
+           SECTION SCROLL OFFSET (accounts for sticky nav)
+        ═══════════════════════════════════════ */
+        section[id] {
+            scroll-margin-top: var(--nav-h);
+        }
+
+        /* ═══════════════════════════════════════
+           HERO
+        ═══════════════════════════════════════ */
+        #home {
+            min-height: calc(100vh - var(--nav-h));
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 5%;
+            background:
+                linear-gradient(rgba(240,244,248,0.82), rgba(240,244,248,0.92)),
+                url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Suzuki_Swift_%282024%29_hybrid_IMG_2582.jpg/1920px-Suzuki_Swift_%282024%29_hybrid_IMG_2582.jpg')
+                center / cover no-repeat;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-card {
+            background: #fff;
+            padding: 3.5rem 4.5rem;
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.07);
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .hero-card h1 {
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            margin-bottom: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .hero-card p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ═══════════════════════════════════════
+           BUTTONS
+        ═══════════════════════════════════════ */
+        .btn-primary, .btn-secondary {
+            display: inline-block;
+            padding: 0.9rem 2.4rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.28s ease;
+            cursor: pointer;
+            border: 1.5px solid var(--accent);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(15,76,129,0.22);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* ═══════════════════════════════════════
+           WHY US SECTION
+        ═══════════════════════════════════════ */
+        .why-section {
+            padding: 5rem 5%;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.6rem);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.07);
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+
+        .center-cta { text-align: center; }
+
+        /* ═══════════════════════════════════════
+           FLEET SECTION
+           CSS-only filtering via hidden radio inputs
+        ═══════════════════════════════════════ */
+        #fleet {
+            padding: 5rem 5%;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Hide the radio inputs themselves */
+        .filter-radio { display: none; }
+
+        /* Filter bar */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            padding: 0.75rem 2rem;
+            border: 1.5px solid var(--border);
+            border-radius: 30px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.25s;
+            user-select: none;
+        }
+
+        .filter-label:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Active filter label — driven by checked radio state */
+        #fl-all:checked ~ .fleet-inner .label-all,
+        #fl-car:checked ~ .fleet-inner .label-car,
+        #fl-bike:checked ~ .fleet-inner .label-bike {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--bg-subtle);
+        }
+
+        /* Vehicle grid */
+        .vehicles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Show/hide cards by filter */
+        /* Default "all" — show everything */
+        .vc-car, .vc-bike { display: flex; }
+
+        /* When car filter is checked hide bikes */
+        #fl-car:checked ~ .fleet-inner .vehicles-grid .vc-bike { display: none; }
+
+        /* When bike filter is checked hide cars */
+        #fl-bike:checked ~ .fleet-inner .vehicles-grid .vc-car { display: none; }
+
+        /* ── Vehicle Card ── */
+        .vehicle-card {
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 36px rgba(0,0,0,0.09);
+        }
+
+        .vehicle-img-wrap {
+            height: 220px;
+            overflow: hidden;
+            background: var(--bg-subtle);
+        }
+
+        .vehicle-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .vehicle-card:hover .vehicle-img-wrap img { transform: scale(1.06); }
+
+        .vehicle-info {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .v-type {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 0.35rem;
+        }
+
+        .v-name {
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+        }
+
+        .v-specs {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .v-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+            padding-top: 1.25rem;
+        }
+
+        .v-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .v-price span {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .rent-btn {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.25s;
+        }
+
+        .rent-btn:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        /* ═══════════════════════════════════════
+           BOOKING SECTION
+           CSS-only success state via checkbox hack
+        ═══════════════════════════════════════ */
+        #booking {
+            padding: 5rem 5%;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Hide checkbox */
+        #booked { display: none; }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ── Left panel: fleet quick-reference ── */
+        .booking-ref {
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            align-self: start;
+        }
+
+        .booking-ref h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .booking-ref > p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .ref-list { display: flex; flex-direction: column; gap: 0.85rem; }
+
+        .ref-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.25s;
+        }
+
+        .ref-item:hover { border-color: var(--accent); }
+
+        .ref-item img {
+            width: 75px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .ref-info { flex: 1; }
+
+        .ref-info .v-type { margin-bottom: 0.15rem; }
+
+        .ref-info strong {
+            display: block;
+            font-size: 0.97rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .ref-info small { color: var(--text-muted); font-size: 0.82rem; }
+
+        /* ── Right panel: form ── */
+        .booking-form-wrap { position: relative; }
+
+        .booking-form-wrap h2 {
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            margin-bottom: 2rem;
+        }
+
+        .form-group { margin-bottom: 1.5rem; }
+
+        .form-group label, .date-row label {
+            display: block;
+            margin-bottom: 0.45rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: var(--text-muted);
+        }
+
+        .form-ctrl {
+            width: 100%;
+            padding: 0.9rem 1.1rem;
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.25s, box-shadow 0.25s;
+        }
+
+        .form-ctrl:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(15,76,129,0.1);
+        }
+
+        .date-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .date-row > div { flex: 1; }
+
+        /* Fake submit — label styled as primary button */
+        .fake-submit {
+            display: block;
+            width: 100%;
+            background: var(--accent);
+            color: #fff;
+            text-align: center;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            cursor: pointer;
+            border: 1.5px solid var(--accent);
+            margin-top: 1.5rem;
+            transition: all 0.28s;
+            user-select: none;
+        }
+
+        .fake-submit:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(15,76,129,0.22);
+        }
+
+        /* Success message — hidden by default */
+        .success-msg {
+            display: none;
+            background: rgba(15,76,129,0.05);
+            border: 1.5px solid var(--accent);
+            border-radius: 10px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .success-msg h3 {
+            color: var(--accent);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-msg p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ── Checkbox hack: toggle form ↔ success ── */
+        /*
+            Structure inside #booking:
+              <input id="booked"> (sibling)
+              <div class="booking-grid">
+                <div class="booking-ref">...</div>
+                <div class="booking-form-wrap">
+                  <form>...</form>
+                  <label for="booked" class="fake-submit">
+                  <div class="success-msg">...</div>
+                </div>
+              </div>
+        */
+        #booked:checked ~ .booking-grid .booking-form-wrap form,
+        #booked:checked ~ .booking-grid .booking-form-wrap .fake-submit {
+            display: none;
+        }
+
+        #booked:checked ~ .booking-grid .booking-form-wrap .success-msg {
+            display: block;
+        }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════ */
+        footer {
+            margin-top: auto;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        footer .logo { display: inline-block; margin-bottom: 0.75rem; }
+
+        .footer-text { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════ */
+        @media (max-width: 960px) {
+            .features-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .features-grid { grid-template-columns: 1fr; }
+            .booking-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .hero-card { padding: 2.5rem 2rem; }
+            .date-row { flex-direction: column; }
+            .nav-links a { margin-left: 1.25rem; font-size: 0.8rem; }
+        }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════ -->
+<nav>
+    <a href="#home" class="logo">MARUTI</a>
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#fleet">Our Fleet</a>
+        <a href="#booking">Book Now</a>
+    </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     HOME SECTION
+═══════════════════════════════════════════════ -->
+<section id="home">
+    <header class="hero">
+        <div class="hero-card">
+            <h1>Drive Premium.<br><span class="accent">Ride Authentic.</span></h1>
+            <p>Experience the thrill of the Indian roads with an exclusive selection of our finest vehicles. Simple, Classic, and Reliable.</p>
+            <div class="hero-btns">
+                <a href="#fleet" class="btn-primary">Explore Our Fleet</a>
+                <a href="#booking" class="btn-secondary">Book Now</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="why-section">
+        <h2 class="section-title">Why Choose <span class="accent">Us</span></h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">₹</div>
+                <h3>Transparent Pricing</h3>
+                <p>No hidden fees. What you see is exactly what you pay — every single time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <h3>Premium Condition</h3>
+                <p>Every vehicle clears a meticulous 50-point inspection before dispatch.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛟</div>
+                <h3>Roadside Assistance</h3>
+                <p>24/7 dedicated support anywhere in the country to keep you safe.</p>
+            </div>
+        </div>
+        <div class="center-cta">
+            <a href="#fleet" class="btn-primary">View Entire Fleet</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FLEET SECTION
+     CSS-only filtering: hidden radios + sibling selectors
+═══════════════════════════════════════════════ -->
+<section id="fleet">
+
+    <!-- Filter state radios — MUST be direct children of #fleet
+         so that #fl-X:checked ~ .fleet-inner works correctly -->
+    <input type="radio" id="fl-all"  name="fleet-filter" class="filter-radio" checked>
+    <input type="radio" id="fl-car"  name="fleet-filter" class="filter-radio">
+    <input type="radio" id="fl-bike" name="fleet-filter" class="filter-radio">
+
+    <div class="fleet-inner">
+        <h2 class="section-title" style="margin-bottom:2rem;">The <span class="accent">Collection</span></h2>
+
+        <div class="filters">
+            <label for="fl-all"  class="filter-label label-all">All Vehicles</label>
+            <label for="fl-car"  class="filter-label label-car">Cars</label>
+            <label for="fl-bike" class="filter-label label-bike">Bikes &amp; Scooters</label>
+        </div>
+
+        <div class="vehicles-grid">
+
+            <!-- ───── CARS ───── -->
+            <article class="vehicle-card vc-car">
+                <div class="vehicle-img-wrap">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mahindra_Thar_SUV_in_%22Red_Rage%22_color_at_Ashiana_Brahmanda%2C_East_Singbhum_India_%28Ank_Kumar%2C_Infosys_limited%29_02_%28cropped%29.jpg/960px-Mahindra_Thar_SUV_in_%22Red_Rage%22_color_at_Ashiana_Brahmanda%2C_East_Singbhum_India_%28Ank_Kumar%2C_Infosys_limited%29_02_%28cropped%29.jpg"
+                         alt="Mahindra Thar" loading="lazy">
+                </div>
+                <div class="vehicle-info">
+                    <div class="v-type">SUV</div>
+                    <h3 class="v-name">Mahindra Thar</h3>
+                    <div class="v-specs">
+                        <span>🚙 Manual</span>
+                        <span>👥 4 Seats</span>
+                    </div>
+                    <div class="v-footer">
+                        <div class="v-price">₹3,500<span> / day</span></div>
+                        <a href="#booking" class="rent-btn">Rent Now ›</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="vehicle-card vc-car">
+                <div class="vehicle-img-wrap">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/2022_Hyundai_Creta_1.6_Plus_%28Chile%29_front_view.jpg/960px-2022_Hyundai_Creta_1.6_Plus_%28Chile%29_front_view.jpg"
+                         alt="Hyundai Creta" loading="lazy">
+                </div>
+                <div class="vehicle-info">
+                    <div class="v-type">Compact SUV</div>
+                    <h3 class="v-name">Hyundai Creta</h3>
+                    <div class="v-specs">
+                        <span>🚙 Automatic</span>
+                        <span>👥 5 Seats</span>
+                    </div>
+                    <div class="v-footer">
+                        <div class="v-price">₹3,000<span> / day</span></div>
+                        <a href="#booking" class="rent-btn">Rent Now ›</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="vehicle-card vc-car">
+                <div class="vehicle-img-wrap">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/2022_Toyota_Kijang_Innova_2.4_G_GUN142R_%2820220302%29.jpg/960px-2022_Toyota_Kijang_Innova_2.4_G_GUN142R_%2820220302%29.jpg"
+                         alt="Toyota Innova Crysta" loading="lazy">
+                </div>
+                <div class="vehicle-info">
+                    <div class="v-type">MUV</div>
+                    <h3 class="v-name">Toyota Innova Crysta</h3>
+                    <div class="v-specs">
+                        <span>🚙 Automatic</span>
+                        <span>👥 7 Seats</span>
+                    </div>
+                    <div class="v-footer">
+                        <div class="v-price">₹4,500<span> / day</span></div>
+                        <a href="#booking" class="rent-btn">Rent Now ›</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="vehicle-card vc-car">
+                <div class="vehicle-img-wrap">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Suzuki_Swift_%282024%29_hybrid_IMG_2582.jpg/960px-Suzuki_Swift_%282024%29_hybrid_IMG_2582.jpg"
+                         alt="Maruti Suzuki Swift" loading="lazy">
+                </div>
+                <div class="vehicle-info">
+                    <div class="v-type">Hatchback</div>
+                    <h3 class="v-name">Maruti Suzuki Swift</h3>
+                    <div class="v-specs">
+                        <span>🚙 Manual</span>
+                        <span>👥 5 Seats</span>
+                    </div>
+                    <div class="v-footer">
+                        <div class="v-price">₹2,000<span> / day</span></div>
+                        <a href="#booking" class="rent-btn">Rent Now ›</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ───── BIKES ───── -->
+            <article class="vehicle-card vc-bike">
+                <div class="vehicle-img-wrap">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Royal_Enfield_Classic_350_%282017_Model_Year%29.jpg/960px-Royal_Enfield_Classic_350_%282017_Model_Year%29.jpg"
+                         alt="Royal Enfield Classic 350" loading="lazy">
+                </div>
+                <div class="vehicle-info">
+                    <div class="v-type">Cruiser</div>
+                    <h3 class="v-name">Royal Enfield Classic 350</h3>
+                    <div class="v-specs">
+                        <span>🏍️ Manual</span>
+                        <span>👥 2 Seats</span>
+                    </div>
+                    <div class="v-footer">
+                        <div class="v-price">₹1,200<span> / day</span></div>
+                        <a href="#booking" class="rent-btn">Rent Now ›</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="vehicle-card vc-bike">
+                <div class="vehicle-img-wrap">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Gold_Metallic_Honda_Activa.jpg/960px-Gold_Metallic_Honda_Activa.jpg"
+                         alt="Honda Activa 6G" loading="lazy">
+                </div>
+                <div class="vehicle-info">
+                    <div class="v-type">Scooter</div>
+                    <h3 class="v-name">Honda Activa 6G</h3>
+                    <div class="v-specs">
+                        <span>🏍️ Automatic</span>
+                        <span>👥 2 Seats</span>
+                    </div>
+                    <div class="v-footer">
+                        <div class="v-price">₹500<span> / day</span></div>
+                        <a href="#booking" class="rent-btn">Rent Now ›</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="vehicle-card vc-bike">
+                <div class="vehicle-img-wrap">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/2020_Duke_200.jpg/960px-2020_Duke_200.jpg"
+                         alt="KTM Duke 200" loading="lazy">
+                </div>
+                <div class="vehicle-info">
+                    <div class="v-type">Sports</div>
+                    <h3 class="v-name">KTM Duke 200</h3>
+                    <div class="v-specs">
+                        <span>🏍️ Manual</span>
+                        <span>👥 2 Seats</span>
+                    </div>
+                    <div class="v-footer">
+                        <div class="v-price">₹1,500<span> / day</span></div>
+                        <a href="#booking" class="rent-btn">Rent Now ›</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="vehicle-card vc-bike">
+                <div class="vehicle-img-wrap">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Bajaj-NS400Z.jpg/960px-Bajaj-NS400Z.jpg"
+                         alt="Bajaj Pulsar 150" loading="lazy">
+                </div>
+                <div class="vehicle-info">
+                    <div class="v-type">Commuter</div>
+                    <h3 class="v-name">Bajaj Pulsar 150</h3>
+                    <div class="v-specs">
+                        <span>🏍️ Manual</span>
+                        <span>👥 2 Seats</span>
+                    </div>
+                    <div class="v-footer">
+                        <div class="v-price">₹800<span> / day</span></div>
+                        <a href="#booking" class="rent-btn">Rent Now ›</a>
+                    </div>
+                </div>
+            </article>
+
+        </div><!-- /vehicles-grid -->
+    </div><!-- /fleet-inner -->
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     BOOKING SECTION
+     CSS-only success via checkbox hack
+═══════════════════════════════════════════════ -->
+<section id="booking">
+
+    <!-- Checkbox that drives the form ↔ success toggle -->
+    <input type="checkbox" id="booked" class="filter-radio">
+
+    <div class="booking-grid">
+
+        <!-- LEFT: Fleet Quick Reference -->
+        <div class="booking-ref">
+            <h3>Our <span class="accent">Fleet</span></h3>
+            <p>Select any vehicle from the list below when filling out your reservation.</p>
+
+            <div class="ref-list">
+                <div class="ref-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mahindra_Thar_SUV_in_%22Red_Rage%22_color_at_Ashiana_Brahmanda%2C_East_Singbhum_India_%28Ank_Kumar%2C_Infosys_limited%29_02_%28cropped%29.jpg/960px-Mahindra_Thar_SUV_in_%22Red_Rage%22_color_at_Ashiana_Brahmanda%2C_East_Singbhum_India_%28Ank_Kumar%2C_Infosys_limited%29_02_%28cropped%29.jpg" alt="Mahindra Thar">
+                    <div class="ref-info">
+                        <div class="v-type">SUV</div>
+                        <strong>Mahindra Thar</strong>
+                        <small>₹3,500/day · Manual · 4 Seats</small>
+                    </div>
+                </div>
+                <div class="ref-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/2022_Hyundai_Creta_1.6_Plus_%28Chile%29_front_view.jpg/960px-2022_Hyundai_Creta_1.6_Plus_%28Chile%29_front_view.jpg" alt="Hyundai Creta">
+                    <div class="ref-info">
+                        <div class="v-type">Compact SUV</div>
+                        <strong>Hyundai Creta</strong>
+                        <small>₹3,000/day · Automatic · 5 Seats</small>
+                    </div>
+                </div>
+                <div class="ref-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/2022_Toyota_Kijang_Innova_2.4_G_GUN142R_%2820220302%29.jpg/960px-2022_Toyota_Kijang_Innova_2.4_G_GUN142R_%2820220302%29.jpg" alt="Toyota Innova">
+                    <div class="ref-info">
+                        <div class="v-type">MUV</div>
+                        <strong>Toyota Innova Crysta</strong>
+                        <small>₹4,500/day · Automatic · 7 Seats</small>
+                    </div>
+                </div>
+                <div class="ref-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Suzuki_Swift_%282024%29_hybrid_IMG_2582.jpg/960px-Suzuki_Swift_%282024%29_hybrid_IMG_2582.jpg" alt="Maruti Swift">
+                    <div class="ref-info">
+                        <div class="v-type">Hatchback</div>
+                        <strong>Maruti Suzuki Swift</strong>
+                        <small>₹2,000/day · Manual · 5 Seats</small>
+                    </div>
+                </div>
+                <div class="ref-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Royal_Enfield_Classic_350_%282017_Model_Year%29.jpg/960px-Royal_Enfield_Classic_350_%282017_Model_Year%29.jpg" alt="Royal Enfield">
+                    <div class="ref-info">
+                        <div class="v-type">Cruiser</div>
+                        <strong>Royal Enfield Classic 350</strong>
+                        <small>₹1,200/day · Manual · 2 Seats</small>
+                    </div>
+                </div>
+                <div class="ref-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Gold_Metallic_Honda_Activa.jpg/960px-Gold_Metallic_Honda_Activa.jpg" alt="Honda Activa">
+                    <div class="ref-info">
+                        <div class="v-type">Scooter</div>
+                        <strong>Honda Activa 6G</strong>
+                        <small>₹500/day · Automatic · 2 Seats</small>
+                    </div>
+                </div>
+                <div class="ref-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/2020_Duke_200.jpg/960px-2020_Duke_200.jpg" alt="KTM Duke 200">
+                    <div class="ref-info">
+                        <div class="v-type">Sports</div>
+                        <strong>KTM Duke 200</strong>
+                        <small>₹1,500/day · Manual · 2 Seats</small>
+                    </div>
+                </div>
+                <div class="ref-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Bajaj-NS400Z.jpg/960px-Bajaj-NS400Z.jpg" alt="Bajaj Pulsar">
+                    <div class="ref-info">
+                        <div class="v-type">Commuter</div>
+                        <strong>Bajaj Pulsar 150</strong>
+                        <small>₹800/day · Manual · 2 Seats</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Reservation Form -->
+        <div class="booking-form-wrap">
+            <h2>Confirm <span class="accent">Reservation</span></h2>
+
+            <form>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" class="form-ctrl" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" class="form-ctrl" placeholder="+91 XXXXXXXXXX" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="vehicle">Vehicle</label>
+                    <select id="vehicle" class="form-ctrl" required>
+                        <option value="">— Select a Vehicle —</option>
+                        <optgroup label="Cars">
+                            <option>Mahindra Thar — ₹3,500/day</option>
+                            <option>Hyundai Creta — ₹3,000/day</option>
+                            <option>Toyota Innova Crysta — ₹4,500/day</option>
+                            <option>Maruti Suzuki Swift — ₹2,000/day</option>
+                        </optgroup>
+                        <optgroup label="Bikes &amp; Scooters">
+                            <option>Royal Enfield Classic 350 — ₹1,200/day</option>
+                            <option>Honda Activa 6G — ₹500/day</option>
+                            <option>KTM Duke 200 — ₹1,500/day</option>
+                            <option>Bajaj Pulsar 150 — ₹800/day</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="date-row">
+                    <div>
+                        <label for="pickup">Pick-up Date</label>
+                        <input type="date" id="pickup" class="form-ctrl" required>
+                    </div>
+                    <div>
+                        <label for="returndate">Return Date</label>
+                        <input type="date" id="returndate" class="form-ctrl" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Pick-up Location</label>
+                    <select id="location" class="form-ctrl" required>
+                        <option value="">— Select City / Location —</option>
+                        <option>New Delhi Airport</option>
+                        <option>Mumbai Airport</option>
+                        <option>Goa (Dabolim)</option>
+                        <option>Bangalore (Indiranagar)</option>
+                        <option>Chennai (Egmore)</option>
+                        <option>Hyderabad (Banjara Hills)</option>
+                    </select>
+                </div>
+            </form>
+
+            <!-- label for #booked acts as the "submit" button -->
+            <label for="booked" class="fake-submit" role="button" tabindex="0">
+                Confirm Booking
+            </label>
+
+            <!-- Success message — shown when #booked is checked -->
+            <div class="success-msg">
+                <h3>🎉 Reservation Confirmed!</h3>
+                <p>Your booking details have been received. Our representative will call you within 2 hours to confirm vehicle handover and the security deposit.</p>
+                <a href="#fleet" class="btn-secondary">Browse More Vehicles</a>
+            </div>
+        </div>
+
+    </div><!-- /booking-grid -->
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer>
+    <a href="#home" class="logo">MARUTI</a>
+    <p class="footer-text">© 2026 MARUTI Vehicle Rentals India. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

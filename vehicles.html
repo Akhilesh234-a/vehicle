@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Fleet | MARUTI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">MARUTI</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="vehicles.html" class="active">Our Fleet</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+    <section class="section-padding">
+        <h2 class="section-title" style="text-align: center;">The <span class="accent-text">Collection</span></h2>
+        
+        <div class="filters" id="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Vehicles</button>
+            <button class="filter-btn" data-filter="car">Cars</button>
+            <button class="filter-btn" data-filter="bike">Bikes / Scooters</button>
+        </div>
+
+        <div class="vehicles-grid" id="vehicles-grid">
+            <!-- Vehicles will be injected here by JS -->
+        </div>
+    </section>
+
+    <footer style="margin-top: auto;">
+        <a href="index.html" class="logo">MARUTI</a>
+        <p class="footer-text">© 2026 MARUTI Vehicle Rentals India. All rights reserved.</p>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/vehicles.js"></script>
+</body>
+</html>
